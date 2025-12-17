@@ -5,6 +5,7 @@ on:
     types: [published]
   schedule:
     - cron: '0 3 * * 3'
+  workflow_dispatch:
 
 jobs:
   push_to_registries:
@@ -30,14 +31,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.TOKEN_GITHUB }}
 
-      - name: Extract metadata (tags, labels) for Debian based image
-        id: meta-debian
-        uses: docker/metadata-action@v5
-        with:
-          images: |
-            dantes2104/drbd-builder:debian
-            ghcr.io/${{ github.repository }}:debian
-
       - name: Build and push Debian based images
         id: push-debian
         uses: docker/build-push-action@v6
@@ -45,16 +38,9 @@ jobs:
           context: .
           file: ./docker/debian/Dockerfile
           push: true
-          tags: ${{ steps.meta-debian.outputs.tags }}
-          labels: ${{ steps.meta-debian.outputs.labels }}
-
-      - name: Extract metadata (tags, labels) for Ubuntu based image
-        id: meta-ubuntu
-        uses: docker/metadata-action@v5
-        with:
-          images: |
-            dantes2104/drbd-builder:ubuntu
-            ghcr.io/${{ github.repository }}:ubuntu
+          tags:
+            - dantes2104/drbd-builder:debian
+            - ghcr.io/${{ github.repository }}:debian
 
       - name: Build and push Ubuntu based images
         id: push-ubuntu
@@ -63,5 +49,6 @@ jobs:
           context: .
           file: ./docker/ubuntu/Dockerfile
           push: true
-          tags: ${{ steps.meta-ubuntu.outputs.tags }}
-          labels: ${{ steps.meta-ubuntu.outputs.labels }}
+          tags:
+            - dantes2104/drbd-builder:ubuntu
+            - ghcr.io/${{ github.repository }}:ubuntu
