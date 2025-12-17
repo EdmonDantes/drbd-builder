@@ -38,7 +38,7 @@ jobs:
           context: .
           file: ./docker/debian/Dockerfile
           push: true
-          tags: dantes2104/drbd-builder:debian,ghcr.io/${{ github.repository }}:debian
+          tags: dantes2104/drbd-builder:debian,ghcr.io/edmondantes/drbd-builder:debian
 
       - name: Build and push Ubuntu based images
         id: push-ubuntu
@@ -47,4 +47,4 @@ jobs:
           context: .
           file: ./docker/ubuntu/Dockerfile
           push: true
-          tags: dantes2104/drbd-builder:ubuntu,ghcr.io/${{ github.repository }}:ubuntu
+          tags: dantes2104/drbd-builder:ubuntu,ghcr.io/edmondantes/drbd-builder:ubuntu
