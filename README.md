@@ -1,5 +1,9 @@
 # DRBD Builder
 
+### __IT IS NOT OFFICIAL PROJECT!!!__
+
+__If you want to use official images and utils or/and support developers, please visit [Linstor Download Page](https://linbit.com/linbit-software-download-page-for-linstor-and-drbd-linux-driver/) or [Linstor Site](https://linbit.com/)__
+
 This project helps to build [DRBD kernel module](https://github.com/LINBIT/drbd)
 and [DRBD utils](https://github.com/LINBIT/drbd-utils) mostly for Debian-based systems (Debian, Ubuntu, etc.).
 
